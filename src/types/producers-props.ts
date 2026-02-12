@@ -13,7 +13,7 @@ export type AddressType = {
 };
 
 export type ProducerType = {
-  id: string;
+  id: string | number;
   name: string;
   address: AddressType;
   phone: string;
