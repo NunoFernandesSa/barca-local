@@ -14,6 +14,7 @@ export type AddressType = {
 
 export type ProducerType = {
   id: string | number;
+  type: string | string[];
   name: string;
   address: AddressType;
   phone: string;

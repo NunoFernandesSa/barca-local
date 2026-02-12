@@ -16,8 +16,10 @@ export default function Navbar(): JSX.Element {
               className="mr-2"
             />
             <div className="flex flex-col items-start justify-center space-y-1">
-              <h1 className="text-xl font-bold ">Local na Barca</h1>
-              <p className="text-sm italic">
+              <h1 className="text-xl font-bold text-foreground">
+                Local na Barca
+              </h1>
+              <p className="text-sm italic text-muted">
                 Produtores locais de Ponte da Barca e arredores.
               </p>
             </div>

@@ -3,6 +3,7 @@ import { ProducerType } from "@/types/producers-props";
 export const PRODUCERS: ProducerType[] = [
   {
     id: 1,
+    type: "Food",
     name: "Producer One",
     address: {
       street: "Main St",
@@ -10,7 +11,7 @@ export const PRODUCERS: ProducerType[] = [
       city: "Barcelona",
       state: "Barcelona",
       zipCode: "12345",
-      coords: { lat: 0, lng: 0 },
+      coords: { lat: 41.806, lng: -8.42 },
     },
     phone: "",
     email: "",
