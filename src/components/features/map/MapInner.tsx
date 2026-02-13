@@ -5,6 +5,7 @@ import type { LatLngExpression } from "leaflet";
 import "leaflet/dist/leaflet.css";
 import { PRODUCERS } from "@/constants/producers";
 import PinIcon from "./PinIcon";
+import Link from "next/link";
 
 const ponteDaBarcaPosition: LatLngExpression = [41.804, -8.417];
 
@@ -26,8 +27,27 @@ export function MapInner() {
           <Marker key={p.id} position={p.address.coords} icon={PinIcon()}>
             <Popup>
               <div className="text-sm">
-                <div className="font-semibold">{p.name}</div>
-                <div className="text-xs text-gray-500">{p.type}</div>
+                <div className="font-semibold text-lg">{p.name}</div>
+                <div className="font-thin text-sm">{p.phone}</div>
+                <div className="font-thin text-sm">{p.email}</div>
+                <div className="font-thin text-sm">
+                  {p.address.number}, {p.address.street}
+                </div>
+                <div className="font-thin text-sm">
+                  {p.address.zipCode}, {p.address.city}
+                </div>
+                <div className="font-thin text-sm">{p.address.state}</div>
+                <div className="text-xs bg-gray-500 w-auto py-0.5 px-2 rounded-md text-white inline-block">
+                  {p.type}
+                </div>
+                <div className="w-full flex justify-end">
+                  <Link
+                    href={`/produtores/${p.id}`}
+                    className="text-xs text-blue-500 underline block mt-2"
+                  >
+                    Ver detalhes
+                  </Link>
+                </div>
               </div>
             </Popup>
           </Marker>

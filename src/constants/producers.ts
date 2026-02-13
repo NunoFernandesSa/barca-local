@@ -45,7 +45,7 @@ export const PRODUCERS: ProducerType[] = [
   },
   {
     id: 3,
-    type: "Fruta",
+    type: ["Fruta & Legumes"],
     name: "Pomar do Lima",
     address: {
       street: "Rua das Flores",
