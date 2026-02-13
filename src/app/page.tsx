@@ -6,7 +6,9 @@ export default function Home() {
     <div className="text-3xl text-white font-bold">
       <SearchBar />
 
-      <MapWrapper />
+      <main className="h-[70vh]">
+        <MapWrapper />
+      </main>
     </div>
   );
 }

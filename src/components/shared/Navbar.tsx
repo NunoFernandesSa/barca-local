@@ -4,15 +4,15 @@ import Image from "next/image";
 
 export default function Navbar(): JSX.Element {
   return (
-    <div className="shadow-md">
+    <div className="shadow-md h-24">
       <Container>
         <div className="flex justify-between items-center">
           <div className="flex items-center">
             <Image
               src="/images/logo/local-na-barca-logo.png"
               alt="Local na Barca Logo"
-              width={90}
-              height={90}
+              width={60}
+              height={60}
               className="mr-2"
             />
             <div className="flex flex-col items-start justify-center space-y-1">

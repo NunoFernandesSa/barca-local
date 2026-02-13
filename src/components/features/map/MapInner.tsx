@@ -15,7 +15,7 @@ export function MapInner() {
         center={ponteDaBarcaPosition}
         zoom={13}
         scrollWheelZoom={false}
-        className="h-screen w-full"
+        className="h-full w-full"
       >
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OSM</a>'
