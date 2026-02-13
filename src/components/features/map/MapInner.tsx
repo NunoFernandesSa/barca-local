@@ -53,8 +53,6 @@ export function MapInner({ selectedProducer }: { selectedProducer: any }) {
             <Popup>
               <div className="text-sm">
                 <div className="font-semibold text-lg">{p.name}</div>
-                <div className="font-thin text-sm">{p.phone}</div>
-                <div className="font-thin text-sm">{p.email}</div>
                 <div className="font-thin text-sm">
                   {p.address.number}, {p.address.street}
                 </div>
