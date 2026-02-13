@@ -6,10 +6,24 @@ import "leaflet/dist/leaflet.css";
 import { PRODUCERS } from "@/constants/producers";
 import PinIcon from "./PinIcon";
 import Link from "next/link";
+import { FlyToSelected } from "./FlyToSelected";
+import { useEffect, useRef } from "react";
 
 const ponteDaBarcaPosition: LatLngExpression = [41.804, -8.417];
 
-export function MapInner() {
+export function MapInner({ selectedProducer }: { selectedProducer: any }) {
+  const markerRefs = useRef<{ [key: number]: any }>({});
+
+  useEffect(() => {
+    if (selectedProducer) {
+      // open popup of the selected producer
+      const marker = markerRefs.current[selectedProducer.id];
+      if (marker) {
+        marker.openPopup();
+      }
+    }
+  }, [selectedProducer]);
+
   return (
     <div className="relative h-full w-full rounded-r-2xl overflow-hidden border border-border bg-primary-soft">
       <MapContainer
@@ -23,8 +37,19 @@ export function MapInner() {
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
 
+        <FlyToSelected producer={selectedProducer} />
+
         {PRODUCERS.map((p) => (
-          <Marker key={p.id} position={p.address.coords} icon={PinIcon()}>
+          <Marker
+            key={p.id}
+            position={p.address.coords}
+            icon={PinIcon()}
+            ref={(ref) => {
+              if (ref) {
+                markerRefs.current[p.id as number] = ref;
+              }
+            }}
+          >
             <Popup>
               <div className="text-sm">
                 <div className="font-semibold text-lg">{p.name}</div>

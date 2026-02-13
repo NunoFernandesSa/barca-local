@@ -9,6 +9,6 @@ const MapInner = dynamic(
   },
 );
 
-export function MapWrapper() {
-  return <MapInner />;
+export function MapWrapper({ selectedProducer }: { selectedProducer: any }) {
+  return <MapInner selectedProducer={selectedProducer} />;
 }
