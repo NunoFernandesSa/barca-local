@@ -1,6 +1,8 @@
 import React, { JSX } from "react";
 import Container from "./Container";
 import Image from "next/image";
+import Link from "next/link";
+import { FaWhatsapp } from "react-icons/fa";
 
 export default function Navbar(): JSX.Element {
   return (
@@ -28,14 +30,9 @@ export default function Navbar(): JSX.Element {
           <nav className="hidden md:block">
             <ul className="flex space-x-6">
               <li>
-                <a href="#" className="">
-                  Início
-                </a>
-              </li>
-              <li>
-                <a href="#" className="">
-                  Produtores
-                </a>
+                <Link href="/">
+                  <FaWhatsapp className="text-3xl text-primary" />
+                </Link>
               </li>
             </ul>
           </nav>
