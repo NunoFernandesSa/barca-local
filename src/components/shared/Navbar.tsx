@@ -30,8 +30,27 @@ export default function Navbar(): JSX.Element {
           <nav className="hidden md:block">
             <ul className="flex space-x-6">
               <li>
-                <Link href="/">
-                  <FaWhatsapp className="text-3xl text-primary" />
+                <Link
+                  href="/"
+                  className="font-semibold text-muted hover:text-primary/80 transition-colors scale-101"
+                >
+                  Início
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/produtores"
+                  className="font-semibold text-muted hover:text-primary/80 transition-colors scale-101"
+                >
+                  Lista de Produtores
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/contacto"
+                  className="font-semibold text-muted hover:text-primary/80 transition-colors scale-101"
+                >
+                  Contact
                 </Link>
               </li>
             </ul>
