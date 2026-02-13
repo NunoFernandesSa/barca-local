@@ -1,13 +1,27 @@
 import L from "leaflet";
 
 export default function PinIcon() {
-  const producerIcon = new L.Icon({
-    iconUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png",
-    iconRetinaUrl:
-      "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon-2x.png",
-    shadowUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png",
-    iconSize: [40, 40],
-    iconAnchor: [20, 40],
+  const producerIcon = new L.DivIcon({
+    className: "",
+    html: `
+      <div style="
+        position: relative;
+        width: 30px;
+        height: 30px;
+      ">
+        <div style="
+          width: 30px;
+          height: 30px;
+          background: #16A34A;
+          border-radius: 50% 50% 50% 0;
+          transform: rotate(-45deg);
+          box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+          border: 3px solid white;
+        "></div>
+      </div>
+    `,
+    iconSize: [30, 30],
+    iconAnchor: [15, 30],
   });
 
   return producerIcon;
