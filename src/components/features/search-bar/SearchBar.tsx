@@ -1,6 +1,5 @@
 "use client";
 
-import { PRODUCERS } from "@/constants/producers";
 import { PRODUCTS_CATEGORIES } from "@/constants/products-categories";
 import { useState } from "react";
 
@@ -8,7 +7,7 @@ interface SearchBarProps {}
 
 const SearchBar: React.FC<SearchBarProps> = () => {
   const [searchTerm, setSearchTerm] = useState<string>("");
-  const [activeCategory, setActiveCategory] = useState<string>("all");
+  const [activeCategory, setActiveCategory] = useState<string>("todos");
 
   const handleCategoryClick = (category: string) => {
     setActiveCategory(category);
