@@ -1,10 +1,28 @@
-import React, { JSX } from "react";
+"use client";
+
+import { JSX } from "react";
 import Container from "./Container";
 import Image from "next/image";
 import Link from "next/link";
-import { FaWhatsapp } from "react-icons/fa";
+import { usePathname } from "next/navigation";
 
 export default function Navbar(): JSX.Element {
+  const pathname = usePathname();
+
+  /**
+   * Returns CSS classes for active and inactive links based on the current pathname.
+   *
+   * If the current pathname matches the given path, the returned CSS classes will style the link as active.
+   * Otherwise, the returned CSS classes will style the link as inactive.
+   *
+   * @param {string} path The path to compare with the current pathname.
+   * @returns {string} The CSS classes for the link.
+   */
+  const linkClasses = (path: string) =>
+    pathname === path
+      ? `font-semibold text-primary hover:text-primary/80 transition-colors scale-101`
+      : "font-semibold text-muted hover:text-primary/80 transition-colors scale-101";
+
   return (
     <div className="shadow-md h-24">
       <Container>
@@ -30,26 +48,17 @@ export default function Navbar(): JSX.Element {
           <nav className="hidden md:block">
             <ul className="flex space-x-6">
               <li>
-                <Link
-                  href="/"
-                  className="font-semibold text-muted hover:text-primary/80 transition-colors scale-101"
-                >
+                <Link href="/" className={linkClasses("/")}>
                   Início
                 </Link>
               </li>
               <li>
-                <Link
-                  href="/produtores"
-                  className="font-semibold text-muted hover:text-primary/80 transition-colors scale-101"
-                >
+                <Link href="/produtores" className={linkClasses("/produtores")}>
                   Lista de Produtores
                 </Link>
               </li>
               <li>
-                <Link
-                  href="/contacto"
-                  className="font-semibold text-muted hover:text-primary/80 transition-colors scale-101"
-                >
+                <Link href="/contacto" className={linkClasses("/contacto")}>
                   Contact
                 </Link>
               </li>
