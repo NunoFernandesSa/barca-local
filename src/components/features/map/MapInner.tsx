@@ -10,7 +10,7 @@ const ponteDaBarcaPosition: LatLngExpression = [41.804, -8.417];
 
 export function MapInner() {
   return (
-    <div className="relative h-full w-full rounded-2xl overflow-hidden border border-border bg-primary-soft">
+    <div className="relative h-full w-full rounded-r-2xl overflow-hidden border border-border bg-primary-soft">
       <MapContainer
         center={ponteDaBarcaPosition}
         zoom={13}
