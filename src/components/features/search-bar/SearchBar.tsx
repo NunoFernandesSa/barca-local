@@ -15,7 +15,7 @@ const SearchBar: React.FC<SearchBarProps> = () => {
   };
 
   return (
-    <section className="px-6 my-6 flex md:flex-row flex-col w-full md:gap-3">
+    <section className="container mx-auto px-6 my-6 flex md:flex-row flex-col w-full md:gap-3">
       <div className="w-full md:w-1/2 lg:w-1/3 relative">
         <input
           type="text"

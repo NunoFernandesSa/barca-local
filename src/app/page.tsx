@@ -6,7 +6,7 @@ export default function Home() {
     <div className="text-3xl text-white font-bold">
       <SearchBar />
 
-      <main className="h-[70vh]">
+      <main className="container mx-auto h-[70vh]">
         <MapWrapper />
       </main>
     </div>
