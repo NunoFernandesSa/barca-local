@@ -5,7 +5,7 @@ export default function Footer() {
   const date = new Date().getFullYear();
 
   return (
-    <div className="container mx-auto w-full h-full text-center text-sm text-muted py-3 gap-3 flex flex-col md:flex-row items-center justify-between">
+    <div className="container mx-auto w-full h-full text-center text-sm text-muted px-3 py-3 gap-3 flex flex-col md:flex-row items-center justify-between">
       <div className="flex flex-col items-start justify-center">
         <span> &copy; {date} Local na Barca</span>
         <span>
