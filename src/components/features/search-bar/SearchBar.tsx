@@ -3,15 +3,13 @@
 import { PRODUCTS_CATEGORIES } from "@/constants/products-categories";
 import { useState } from "react";
 
-interface SearchBarProps {}
-
-const SearchBar: React.FC<SearchBarProps> = () => {
+const SearchBar = () => {
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [activeCategory, setActiveCategory] = useState<string>("todos");
 
   const handleCategoryClick = (category: string) => {
     setActiveCategory(category);
-    setSearchTerm(""); // Reset search
+    setSearchTerm("");
   };
 
   return (
