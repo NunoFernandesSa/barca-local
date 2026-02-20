@@ -9,7 +9,7 @@ export default function AddressInfo({ producer }: { producer: ProducerType }) {
         Morada
       </h2>
       <p className="text-gray-600">
-        {producer.address.street}, {producer.address.number}
+        {producer.address.number} {producer.address.street}
         <br />
         {producer.address.zipCode} {producer.address.city}
         <br />
