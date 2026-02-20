@@ -23,6 +23,12 @@ export type ProducerType = {
   description: string;
   image: string;
   socialMedia: string[];
+  images?: string[];
   createdAt: string;
   updatedAt: string;
+};
+
+export type GalleryProps = {
+  producerName: string;
+  images: string[];
 };

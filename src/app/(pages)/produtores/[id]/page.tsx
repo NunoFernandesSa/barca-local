@@ -6,6 +6,8 @@ import ProductsInfo from "@/components/features/producers/ProductsInfo";
 import ContactInfo from "@/components/features/producers/ContactInfo";
 import AddressInfo from "@/components/features/producers/AddressInfo";
 import ScheduleInfo from "@/components/features/producers/ScheduleInfo";
+import Image from "next/image";
+import Gallery from "@/components/features/producers/Gallery";
 
 // ----- Props for the page -----
 type Props = {
@@ -108,15 +110,8 @@ export default async function ProducersDetailsPage({ params }: Props) {
             <ProductsInfo producer={producer} />
 
             {/* Gallery (placeholder for future images) */}
-            {producer.image && (
-              <div className="bg-white rounded-lg shadow-md p-6">
-                <h2 className="text-xl font-semibold mb-4">Galeria</h2>
-                <img
-                  src={producer.image}
-                  alt={producer.name}
-                  className="w-full h-64 object-cover rounded-lg"
-                />
-              </div>
+            {producer.images && producer.images.length > 0 && (
+              <Gallery images={producer.images} producerName={producer.name} />
             )}
           </div>
 
