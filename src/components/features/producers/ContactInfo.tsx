@@ -1,6 +1,7 @@
 import { ProducerType } from "@/types/producers-props";
 import { BiGlobe, BiPhone } from "react-icons/bi";
 import { MdOutlineMailOutline } from "react-icons/md";
+import SocialIcons from "./SocialIcons";
 
 export default function ContactInfo({ producer }: { producer: ProducerType }) {
   return (
@@ -40,19 +41,12 @@ export default function ContactInfo({ producer }: { producer: ProducerType }) {
           </p>
         )}
         <div className="flex flex-row flex-wrap gap-2">
-          {producer.socialMedia &&
-            Object.entries(producer.socialMedia).map(([platform, link]) => (
-              <span key={platform} className="flex flex-row items-center gap-2">
-                <a
-                  href={link.url}
-                  target="_blank"
-                  rel="noopener"
-                  className="hover:text-primary text-gray-600"
-                >
-                  {platform}
-                </a>
-              </span>
-            ))}
+          {producer.socialMedia && (
+            <SocialIcons
+              socialMedia={producer.socialMedia}
+              producerName={producer.name}
+            />
+          )}
         </div>
       </div>
     </div>
