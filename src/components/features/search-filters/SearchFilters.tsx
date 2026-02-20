@@ -6,12 +6,12 @@ export default function SearchFilters({
   onCategoryChange,
 }: SearchFilterProps) {
   return (
-    <div className="flex flex-wrap gap-2 my-2">
+    <div className="flex flex-wrap gap-2 w-full">
       {PRODUCTS_CATEGORIES.map((category) => (
         <button
           key={category.slug}
           onClick={() => onCategoryChange(category.slug)}
-          className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 cursor-pointer ${
+          className={`px-3 py-1 rounded-full text-sm font-medium transition-all duration-200 cursor-pointer ${
             activeCategory === category.slug
               ? "bg-primary text-white shadow-lg"
               : "bg-gray-300 text-gray-700 hover:bg-gray-200"
