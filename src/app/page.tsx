@@ -2,7 +2,8 @@
 
 import AsideProducersList from "@/components/features/aside/AsideProducersList";
 import { MapWrapper } from "@/components/features/map/MapWrapper";
-import SearchBar from "@/components/features/search-bar/SearchBar";
+import SearchSection from "@/components/features/search-filters/SearchSection";
+import { useFilters } from "@/hooks/useFilters";
 import { ProducerType } from "@/types/producers-props";
 import { useState } from "react";
 
@@ -11,11 +12,20 @@ export default function Home() {
     null
   );
 
+  // ----- hooks -----
+  const { searchTerm, activeCategory, handleSearch, handleCategoryChange } =
+    useFilters();
+
   return (
     <div className="text-3xl text-white font-bold">
-      <SearchBar />
+      <SearchSection
+        onSearch={handleSearch}
+        searchTerm={searchTerm}
+        activeCategory={activeCategory}
+        onCategoryChange={handleCategoryChange}
+      />
 
-      <main className="container md:px-3 px-6 mx-auto h-[70vh] flex">
+      <main className="container mx-auto px-3 md:px-6 h-[70vh] flex">
         <AsideProducersList setSelectedProducer={setSelectedProducer} />
 
         <div className="w-full md:w-3/4 h-full">
