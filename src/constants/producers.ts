@@ -28,6 +28,10 @@ export const PRODUCERS: ProducerType[] = [
         icon: "instagram",
         url: "https://www.instagram.com/hortadabarca",
       },
+      linkedin: {
+        icon: "linkedin",
+        url: "https://www.linkedin.com/company/hortadabarca",
+      },
     },
     images: [
       "https://picsum.photos/id/15/800/600", // Legumes

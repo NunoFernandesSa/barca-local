@@ -21,15 +21,7 @@ type SocialMediaType = {
     icon: string;
     url: string;
   };
-  twitter?: {
-    icon: string;
-    url: string;
-  };
   linkedin?: {
-    icon: string;
-    url: string;
-  };
-  pinterest?: {
     icon: string;
     url: string;
   };
@@ -38,10 +30,6 @@ type SocialMediaType = {
     url: string;
   };
   tiktok?: {
-    icon: string;
-    url: string;
-  };
-  whatsapp?: {
     icon: string;
     url: string;
   };
