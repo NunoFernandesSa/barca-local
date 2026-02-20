@@ -39,6 +39,21 @@ export default function ContactInfo({ producer }: { producer: ProducerType }) {
             </a>
           </p>
         )}
+        <div className="flex flex-row flex-wrap gap-2">
+          {producer.socialMedia &&
+            Object.entries(producer.socialMedia).map(([platform, link]) => (
+              <span key={platform} className="flex flex-row items-center gap-2">
+                <a
+                  href={link.url}
+                  target="_blank"
+                  rel="noopener"
+                  className="hover:text-primary text-gray-600"
+                >
+                  {platform}
+                </a>
+              </span>
+            ))}
+        </div>
       </div>
     </div>
   );

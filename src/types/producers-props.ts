@@ -12,6 +12,41 @@ export type AddressType = {
   coords: CoordsType;
 };
 
+type SocialMediaType = {
+  facebook?: {
+    icon: string;
+    url: string;
+  };
+  instagram?: {
+    icon: string;
+    url: string;
+  };
+  twitter?: {
+    icon: string;
+    url: string;
+  };
+  linkedin?: {
+    icon: string;
+    url: string;
+  };
+  pinterest?: {
+    icon: string;
+    url: string;
+  };
+  youtube?: {
+    icon: string;
+    url: string;
+  };
+  tiktok?: {
+    icon: string;
+    url: string;
+  };
+  whatsapp?: {
+    icon: string;
+    url: string;
+  };
+};
+
 export type ProducerType = {
   id: string | number;
   type: string | string[];
@@ -22,7 +57,7 @@ export type ProducerType = {
   website: string;
   description: string;
   image: string;
-  socialMedia: string[];
+  socialMedia?: SocialMediaType;
   images?: string[];
   createdAt: string;
   updatedAt: string;
