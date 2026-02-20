@@ -18,7 +18,8 @@ export const PRODUCERS: ProducerType[] = [
     website: "https://hortadabarca.pt",
     description:
       "Horta familiar com produção biológica de legumes frescos. Tradição de gerações na região de Ponte da Barca.",
-    image: "https://picsum.photos/id/15/800/600", // Imagem principal
+    image: "https://picsum.photos/id/15/800/600",
+    products: ["Legumes frescos", "Horta", "Flores"],
     socialMedia: {
       facebook: {
         icon: "facebook",

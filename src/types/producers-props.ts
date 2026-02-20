@@ -46,6 +46,7 @@ export type ProducerType = {
   description: string;
   image: string;
   socialMedia?: SocialMediaType;
+  products?: string[];
   images?: string[];
   createdAt: string;
   updatedAt: string;

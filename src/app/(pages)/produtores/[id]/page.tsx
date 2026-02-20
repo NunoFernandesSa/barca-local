@@ -107,7 +107,9 @@ export default async function ProducersDetailsPage({ params }: Props) {
             </div>
 
             {/* Products */}
-            <ProductsInfo producer={producer} />
+            {producer.products && producer.products.length > 0 && (
+              <ProductsInfo producer={producer} />
+            )}
 
             {/* Gallery (placeholder for future images) */}
             {producer.images && producer.images.length > 0 && (
