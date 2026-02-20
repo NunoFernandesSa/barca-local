@@ -15,9 +15,63 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Local na Barca | Produtores locais de Ponte da Barca",
+  metadataBase: new URL("https://www.produtoreslocais.pt"),
+  title: "Produtores Locais do Minho | Anuário de Produtores Artesanais",
   description:
-    "Encontre produtores locais de Ponte da Barca e arredores e descubra os produtos artesanais da região.",
+    "Descubra os melhores produtores locais de Ponte da Barca e arredores. Anuário completo com produtos artesanais, queijos, vinhos e artesanato da região do Minho.",
+
+  // openGraph for social midia
+  openGraph: {
+    title: "Produtores Locais do Minho",
+    description:
+      "Conecte-se com os melhores produtores artesanais da região do Minho. Descubra produtos locais autênticos e apoie a economia local.",
+    url: "https://www.produtoreslocais.pt",
+    siteName: "Produtores Locais do Minho",
+    locale: "pt_PT",
+    type: "website",
+    images: [
+      {
+        url: "https://www.teusite.pt/og-image.jpg", // Adiciona uma imagem representativa
+        width: 1200,
+        height: 630,
+        alt: "Mapa dos produtores locais do Minho",
+      },
+    ],
+  },
+
+  keywords: [
+    "produtores locais",
+    "minho",
+    "ponte da barca",
+    "produtos artesanais",
+    "queijo artesanal",
+    "vinho verde",
+    "artesanato minho",
+    "produtos regionais",
+    "agricultura familiar",
+    "feiras locais",
+    "economia local",
+    "produtores portugal",
+  ],
+
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+
+  alternates: {
+    canonical: "https://www.produtoreslocais.pt",
+    languages: {
+      "pt-PT": "https://www.produtoreslocais.pt",
+    },
+  },
 };
 
 export default function RootLayout({
