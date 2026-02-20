@@ -1,6 +1,6 @@
 import { ProducerType } from "@/types/producers-props";
 import { BiGlobe, BiPhone } from "react-icons/bi";
-import { RiMvAiLine } from "react-icons/ri";
+import { MdOutlineMailOutline } from "react-icons/md";
 
 export default function ContactInfo({ producer }: { producer: ProducerType }) {
   return (
@@ -20,7 +20,7 @@ export default function ContactInfo({ producer }: { producer: ProducerType }) {
         )}
         {producer.email && (
           <p className="flex items-center gap-2 text-gray-600">
-            <RiMvAiLine className="w-4 h-4" />
+            <MdOutlineMailOutline className="w-4 h-4" />
             <a href={`mailto:${producer.email}`} className="hover:text-primary">
               {producer.email}
             </a>
