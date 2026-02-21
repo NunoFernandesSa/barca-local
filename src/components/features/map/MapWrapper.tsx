@@ -19,7 +19,5 @@ export function MapWrapper({
   selectedProducer,
   producers = [],
 }: MapWrapperProps) {
-  console.log("🗺️ MapWrapper - produtores recebidos:", producers.length);
-
   return <MapInner selectedProducer={selectedProducer} producers={producers} />;
 }

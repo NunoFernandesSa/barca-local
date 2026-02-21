@@ -14,20 +14,13 @@ export default function AsideProducersList({
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // TODO: DELETE THIS LOG
-    console.log("🔵 AsideProducersList: Vai buscar dados...");
-
     apiClient
       .get<ApiResponse>("/producers/")
       .then((data) => {
         setProducers(data.results);
 
         if (onProducersLoaded) {
-          // TODO: DELETE THIS LOG
-          console.log("📤 Enviando produtores para Home:", data.results.length);
           onProducersLoaded(data.results);
-        } else {
-          console.log("❌ onProducersLoaded é undefined!");
         }
 
         setLoading(false);
