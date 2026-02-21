@@ -5,12 +5,6 @@ export type AsideProducersListProps = {
   setSelectedProducer: (producer: ProducerType | null) => void;
 };
 
-export type AsideProducersClientProps = {
-  producers: ProducerType[];
-  selectedProducer: ProducerType | null;
-  setSelectedProducer: (producer: ProducerType | null) => void;
-};
-
 export type ApiResponse = {
   count: number;
   next: string | null;

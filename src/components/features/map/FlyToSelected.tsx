@@ -2,14 +2,13 @@
 
 import { useMap } from "react-leaflet";
 import { useEffect } from "react";
-import { ProducerType } from "@/types/producers-props";
 
-export function FlyToSelected({ producer }: { producer: ProducerType | null }) {
+export function FlyToSelected({ producer }: { producer: any }) {
   const map = useMap();
 
   useEffect(() => {
-    if (producer && map) {
-      map.flyTo(producer.address.coords, 15, {
+    if (producer && map && producer.latitude && producer.longitude) {
+      map.flyTo([producer.latitude, producer.longitude], 15, {
         duration: 1.5,
       });
     }
