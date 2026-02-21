@@ -12,6 +12,7 @@ export default function AsideProducersList({
 }: AsideProducersListProps) {
   const [producers, setProducers] = useState<ProducerType[]>([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   const hasLoaded = useRef(false);
 
@@ -20,10 +21,10 @@ export default function AsideProducersList({
 
     let isMounted = true;
     hasLoaded.current = true;
-
     apiClient
       .get<ApiResponse>("/producers/")
       .then((data) => {
+        if (!isMounted) return;
         setProducers(data.results);
 
         if (onProducersLoaded) {
@@ -33,7 +34,11 @@ export default function AsideProducersList({
         setLoading(false);
       })
       .catch((error) => {
+        if (!isMounted) return;
         console.error("❌ Erro ao carregar produtores:", error);
+        setError(
+          "❌ Não foi possível carregar os produtores. Tente novamente mais tarde."
+        );
         setLoading(false);
       });
 
@@ -47,6 +52,15 @@ export default function AsideProducersList({
     return (
       <aside className="hidden md:block w-1/4 h-full rounded-l-2xl shadow-lg overflow-y-auto p-4">
         <p className="text-gray-500">Carregando produtores...</p>
+      </aside>
+    );
+  }
+
+  // ----- if error show a error message -----
+  if (error) {
+    return (
+      <aside className="hidden md:block w-1/4 h-full rounded-l-2xl shadow-lg overflow-y-auto p-4">
+        <p className="text-red-500">{error}</p>
       </aside>
     );
   }
