@@ -4,7 +4,6 @@ import { ProducerType } from "@/types/producers-props";
 import { useState, useEffect, useRef } from "react";
 import { ApiResponse, AsideProducersListProps } from "@/types/aside-props";
 import { apiClient } from "../../../../lib/api/client";
-import { log } from "node:console";
 
 export default function AsideProducersList({
   selectedProducer,
@@ -43,6 +42,7 @@ export default function AsideProducersList({
     };
   }, [onProducersLoaded]);
 
+  // ----- if loading show a loading message -----
   if (loading) {
     return (
       <aside className="hidden md:block w-1/4 h-full rounded-l-2xl shadow-lg overflow-y-auto p-4">
@@ -51,6 +51,7 @@ export default function AsideProducersList({
     );
   }
 
+  // ----- if producers is undefined or empty show a message -----
   if (!producers || producers.length === 0) {
     return (
       <aside className="hidden md:block w-1/4 h-full rounded-l-2xl shadow-lg overflow-y-auto p-4">
@@ -58,9 +59,6 @@ export default function AsideProducersList({
       </aside>
     );
   }
-
-  // TODO: DELETE THIS LOG
-  console.log("✅ Produtores carregados:", producers);
 
   return (
     <aside className="hidden md:block w-1/4 h-full rounded-l-2xl shadow-lg overflow-y-auto">
