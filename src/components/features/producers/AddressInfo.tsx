@@ -11,12 +11,12 @@ export default function AddressInfo({ producer }: { producer: ProducerType }) {
       <p className="text-gray-600">
         {producer.address.number} {producer.address.street}
         <br />
-        {producer.address.zipCode} {producer.address.city}
+        {producer.address.zip_code} {producer.address.city}
         <br />
         {producer.address.state}
       </p>
       <a
-        href={`https://maps.google.com/?q=${producer.address.coords.lat},${producer.address.coords.lng}`}
+        href={`https://maps.google.com/?q=${producer.address.latitude},${producer.address.longitude}`}
         target="_blank"
         rel="noopener"
         className="inline-block mt-4 text-primary hover:underline text-sm"
