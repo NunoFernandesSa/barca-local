@@ -4,6 +4,7 @@ import { ProducerType } from "@/types/producers-props";
 import { useState, useEffect, useRef } from "react";
 import { ApiResponse, AsideProducersListProps } from "@/types/aside-props";
 import { apiClient } from "../../../../lib/api/client";
+import { log } from "node:console";
 
 export default function AsideProducersList({
   selectedProducer,
@@ -58,6 +59,9 @@ export default function AsideProducersList({
     );
   }
 
+  // TODO: DELETE THIS LOG
+  console.log("✅ Produtores carregados:", producers);
+
   return (
     <aside className="hidden md:block w-1/4 h-full rounded-l-2xl shadow-lg overflow-y-auto">
       {producers.map((producer) => (
@@ -78,11 +82,26 @@ export default function AsideProducersList({
           <div className="text-xs text-gray-600 mt-1">
             {producer.address?.zip_code} {producer.address?.city}
           </div>
-          <span className="text-xs text-foreground font-light bg-primary/20 px-2 py-0.5 rounded-full">
-            {Array.isArray(producer.categories)
-              ? producer.categories.join(", ")
-              : producer.categories}
-          </span>
+
+          {producer.categories && producer.categories.length > 0 ? (
+            <div className="flex flex-wrap gap-1 mt-1">
+              {producer.categories.map((cat) => {
+                const categoryName =
+                  typeof cat === "string"
+                    ? cat
+                    : (cat as { name: string }).name;
+
+                return (
+                  <span
+                    key={categoryName}
+                    className="text-xs text-foreground font-light bg-primary/20 px-2 py-0.5 rounded-full"
+                  >
+                    {categoryName}
+                  </span>
+                );
+              })}
+            </div>
+          ) : null}
         </div>
       ))}
     </aside>
