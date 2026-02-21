@@ -5,7 +5,7 @@ import SearchSection from "@/components/features/search-filters/SearchSection";
 import AsideProducersList from "@/components/features/aside/AsideProducersList";
 import { useFilters } from "@/hooks/useFilters";
 import { ProducerType } from "@/types/producers-props";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 
 export default function Home() {
   const [selectedProducer, setSelectedProducer] = useState<ProducerType | null>(
@@ -16,9 +16,9 @@ export default function Home() {
     useFilters();
 
   // function for handling producers loaded
-  const handleProducersLoaded = (data: ProducerType[]) => {
+  const handleProducersLoaded = useCallback((data: ProducerType[]) => {
     setProducers(data);
-  };
+  }, []);
 
   return (
     <div className="min-h-screen bg-gray-50">
