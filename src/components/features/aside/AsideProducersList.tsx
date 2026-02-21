@@ -1,7 +1,7 @@
 "use client";
 
 import { ProducerType } from "@/types/producers-props";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { ApiResponse, AsideProducersListProps } from "@/types/aside-props";
 import { apiClient } from "../../../../lib/api/client";
 
@@ -13,7 +13,14 @@ export default function AsideProducersList({
   const [producers, setProducers] = useState<ProducerType[]>([]);
   const [loading, setLoading] = useState(true);
 
+  const hasLoaded = useRef(false);
+
   useEffect(() => {
+    if (hasLoaded.current) return;
+
+    let isMounted = true;
+    hasLoaded.current = true;
+
     apiClient
       .get<ApiResponse>("/producers/")
       .then((data) => {
@@ -29,6 +36,10 @@ export default function AsideProducersList({
         console.error("❌ Erro ao carregar produtores:", error);
         setLoading(false);
       });
+
+    return () => {
+      isMounted = false;
+    };
   }, [onProducersLoaded]);
 
   if (loading) {
