@@ -5,6 +5,8 @@ export type AddressType = {
   state?: string;
   zip_code?: string;
   formatted?: string;
+  latitude?: number;
+  longitude?: number;
 };
 
 export type ProducerType = {

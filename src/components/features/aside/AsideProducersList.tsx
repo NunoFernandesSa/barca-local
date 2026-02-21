@@ -8,22 +8,35 @@ import { apiClient } from "../../../../lib/api/client";
 export default function AsideProducersList({
   selectedProducer,
   setSelectedProducer,
+  onProducersLoaded,
 }: AsideProducersListProps) {
   const [producers, setProducers] = useState<ProducerType[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    // TODO: DELETE THIS LOG
+    console.log("🔵 AsideProducersList: Vai buscar dados...");
+
     apiClient
       .get<ApiResponse>("/producers/")
       .then((data) => {
         setProducers(data.results);
+
+        if (onProducersLoaded) {
+          // TODO: DELETE THIS LOG
+          console.log("📤 Enviando produtores para Home:", data.results.length);
+          onProducersLoaded(data.results);
+        } else {
+          console.log("❌ onProducersLoaded é undefined!");
+        }
+
         setLoading(false);
       })
       .catch((error) => {
-        console.error("Erro ao carregar produtores:", error);
+        console.error("❌ Erro ao carregar produtores:", error);
         setLoading(false);
       });
-  }, []);
+  }, [onProducersLoaded]);
 
   if (loading) {
     return (

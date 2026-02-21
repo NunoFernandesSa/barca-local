@@ -12,7 +12,7 @@ import { MapInnerProps } from "@/types/map-props";
 const ponteDaBarcaPosition: LatLngExpression = [41.804, -8.417];
 
 export function MapInner({ selectedProducer, producers = [] }: MapInnerProps) {
-  const markerRefs = useRef<{ [key: string]: any }>({});
+  const markerRefs = useRef<{ [key: string]: L.Marker | null }>({});
 
   useEffect(() => {
     if (selectedProducer) {
@@ -57,13 +57,15 @@ export function MapInner({ selectedProducer, producers = [] }: MapInnerProps) {
         <FlyToSelected producer={selectedProducer} />
 
         {producers.map((p) => {
-          // 👇 Usa coordenadas se existirem, senão não mostra marcador
-          if (!p.latitude || !p.longitude) return null;
+          if (!p.address?.latitude || !p.address?.longitude) {
+            console.log(`❌ Sem coordenadas para: ${p.name}`);
+            return null;
+          }
 
           return (
             <Marker
               key={p.id}
-              position={[p.latitude, p.longitude]}
+              position={[p.address.latitude, p.address.longitude]}
               icon={PinIcon()}
               ref={(ref) => {
                 if (ref) {

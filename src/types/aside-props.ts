@@ -3,6 +3,7 @@ import { ProducerType } from "./producers-props";
 export type AsideProducersListProps = {
   selectedProducer: ProducerType | null;
   setSelectedProducer: (producer: ProducerType | null) => void;
+  onProducersLoaded?: (producers: ProducerType[]) => void;
 };
 
 export type ApiResponse = {
