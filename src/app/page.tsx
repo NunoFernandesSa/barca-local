@@ -1,8 +1,9 @@
+// app/page.tsx
 "use client";
 
-import AsideProducersList from "@/components/features/aside/AsideProducersList";
 import { MapWrapper } from "@/components/features/map/MapWrapper";
 import SearchSection from "@/components/features/search-filters/SearchSection";
+import AsideProducersList from "@/components/features/aside/AsideProducersList"; // 👈 Único componente
 import { useFilters } from "@/hooks/useFilters";
 import { ProducerType } from "@/types/producers-props";
 import { useState } from "react";
@@ -12,12 +13,11 @@ export default function Home() {
     null
   );
 
-  // ----- hooks -----
   const { searchTerm, activeCategory, handleSearch, handleCategoryChange } =
     useFilters();
 
   return (
-    <div className="text-3xl text-white font-bold">
+    <div className="min-h-screen bg-gray-50">
       <SearchSection
         onSearch={handleSearch}
         searchTerm={searchTerm}
@@ -26,7 +26,10 @@ export default function Home() {
       />
 
       <main className="container mx-auto px-3 md:px-6 h-[70vh] flex">
-        <AsideProducersList setSelectedProducer={setSelectedProducer} />
+        <AsideProducersList
+          selectedProducer={selectedProducer}
+          setSelectedProducer={setSelectedProducer}
+        />
 
         <div className="w-full md:w-3/4 h-full">
           <MapWrapper selectedProducer={selectedProducer} />

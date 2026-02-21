@@ -1,56 +1,54 @@
-export type CoordsType = {
-  lat: number;
-  lng: number;
-};
-
 export type AddressType = {
-  street: string;
-  number: string;
-  city: string;
-  state: string;
-  zipCode: string;
-  coords: CoordsType;
-};
-
-type SocialMediaType = {
-  facebook?: {
-    icon: string;
-    url: string;
-  };
-  instagram?: {
-    icon: string;
-    url: string;
-  };
-  linkedin?: {
-    icon: string;
-    url: string;
-  };
-  youtube?: {
-    icon: string;
-    url: string;
-  };
-  tiktok?: {
-    icon: string;
-    url: string;
-  };
+  street?: string;
+  number?: string;
+  city?: string;
+  state?: string;
+  zip_code?: string;
+  formatted?: string;
 };
 
 export type ProducerType = {
-  id: string | number;
-  type: string | string[];
+  id: string;
   name: string;
-  address: AddressType;
+  type: string[];
+  type_display: string;
+  description: string;
   phone: string;
+  mobile_phone: string;
   email: string;
   website: string;
-  description: string;
-  image: string;
-  socialMedia?: SocialMediaType;
-  products?: string[];
-  images?: string[];
-  createdAt: string;
-  updatedAt: string;
+  address: AddressType;
+  facebook: string;
+  instagram: string;
+  twitter: string;
+  youtube: string;
+  tiktok: string;
+  main_image: string | null;
+  gallery_images: {
+    id: number;
+    image_url: string;
+    caption: string;
+    order: number;
+  }[];
+  products: string[];
+  created_at: string;
+  updated_at: string;
+  is_active: boolean;
 };
+
+export interface ProducersResponse {
+  results: ProducerType[];
+  count: number;
+  next: string | null;
+  previous: string | null;
+}
+
+export interface ProducerFilters {
+  type?: string;
+  city?: string;
+  search?: string;
+  is_active?: boolean;
+}
 
 export type GalleryProps = {
   producerName: string;

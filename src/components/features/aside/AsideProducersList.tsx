@@ -1,29 +1,70 @@
-import { PRODUCERS } from "@/constants/producers";
+"use client";
+
 import { ProducerType } from "@/types/producers-props";
+import { useState, useEffect } from "react";
+import { ApiResponse, AsideProducersListProps } from "@/types/aside-props";
+import { apiClient } from "../../../../lib/api/client";
 
 export default function AsideProducersList({
+  selectedProducer,
   setSelectedProducer,
-}: {
-  setSelectedProducer: (producer: ProducerType | null) => void;
-}) {
+}: AsideProducersListProps) {
+  const [producers, setProducers] = useState<ProducerType[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    apiClient
+      .get<ApiResponse>("/producers/")
+      .then((data) => {
+        setProducers(data.results);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error("Erro ao carregar produtores:", error);
+        setLoading(false);
+      });
+  }, []);
+
+  if (loading) {
+    return (
+      <aside className="hidden md:block w-1/4 h-full rounded-l-2xl shadow-lg overflow-y-auto p-4">
+        <p className="text-gray-500">Carregando produtores...</p>
+      </aside>
+    );
+  }
+
+  if (!producers || producers.length === 0) {
+    return (
+      <aside className="hidden md:block w-1/4 h-full rounded-l-2xl shadow-lg overflow-y-auto p-4">
+        <p className="text-gray-500">Nenhum produtor encontrado</p>
+      </aside>
+    );
+  }
+
   return (
     <aside className="hidden md:block w-1/4 h-full rounded-l-2xl shadow-lg overflow-y-auto">
-      {PRODUCERS.map((p) => (
+      {producers.map((producer) => (
         <div
-          key={p.id}
-          onClick={() => setSelectedProducer(p)}
-          className="p-4 border-b cursor-pointer hover:bg-primary/10 transition"
+          key={producer.id}
+          onClick={() => setSelectedProducer(producer)}
+          className={`p-4 border-b cursor-pointer hover:bg-primary/10 transition ${
+            selectedProducer?.id === producer.id ? "bg-primary/10" : ""
+          }`}
         >
-          <div className="font-semibold text-primary text-lg">{p.name}</div>
+          <div className="font-semibold text-primary text-lg">
+            {producer.name}
+          </div>
 
           <div className="text-xs text-gray-600 mt-1">
-            {p.address.number} {p.address.street}
+            {producer.address?.number} {producer.address?.street}
           </div>
           <div className="text-xs text-gray-600 mt-1">
-            {p.address.zipCode} {p.address.city}
+            {producer.address?.zip_code} {producer.address?.city}
           </div>
           <span className="text-xs text-foreground font-light bg-primary/20 px-2 py-0.5 rounded-full">
-            {p.type}
+            {Array.isArray(producer.type)
+              ? producer.type.join(", ")
+              : producer.type}
           </span>
         </div>
       ))}
