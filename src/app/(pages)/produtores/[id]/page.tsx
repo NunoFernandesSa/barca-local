@@ -5,8 +5,9 @@ import ProductsInfo from "@/components/features/producers/ProductsInfo";
 import ContactInfo from "@/components/features/producers/ContactInfo";
 import AddressInfo from "@/components/features/producers/AddressInfo";
 import ScheduleInfo from "@/components/features/producers/ScheduleInfo";
-import Image from "next/image";
 import Gallery from "@/components/features/producers/Gallery";
+import { apiClient } from "../../../../../lib/api/client";
+import { ProducerType } from "@/types/producers-props";
 
 // ----- Props for the page -----
 type Props = {
@@ -16,45 +17,55 @@ type Props = {
 // ----- Metadata for SEO -----
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { id } = await params;
-  const producer = PRODUCERS.find((p) => p.id === parseInt(id));
 
-  if (!producer) {
+  try {
+    const producer = await apiClient.get<ProducerType>(`/producers/${id}/`);
+
+    if (!producer) {
+      return {
+        title: "Produtor não encontrado",
+      };
+    }
+
+    // Extrair nomes das categorias
+    const categories =
+      producer.categories
+        ?.map((c: { name?: string } | string) =>
+          typeof c === "string" ? c : c.name
+        )
+        .join(" e ") || "produtos artesanais";
+
+    return {
+      title: `${producer.name} | Produtor de ${categories} em ${producer.address?.city}`,
+      description: `Conheça ${
+        producer.name
+      }, produtor de ${categories.toLowerCase()} localizado em ${
+        producer.address?.city
+      }. Produtos artesanais de qualidade da região do Minho.`,
+    };
+  } catch (error) {
     return {
       title: "Produtor não encontrado",
     };
   }
-
-  const type = Array.isArray(producer.type)
-    ? producer.type.join(" e ")
-    : producer.type;
-
-  return {
-    title: `${producer.name} | Produtor de ${type} em ${producer.address.city}`,
-    description: `Conheça ${
-      producer.name
-    }, produtor de ${type.toLowerCase()} localizado em ${
-      producer.address.city
-    }. Produtos artesanais de qualidade da região do Minho.`,
-  };
-}
-
-// fetch producer by ID
-function getProducerById(id: string) {
-  const numericId = parseInt(id, 10);
-  return PRODUCERS.find((p) => p.id === numericId);
 }
 
 // Format producer type to display in the UI
 function formatProducerType(type: string | string[]) {
-  if (Array.isArray(type)) {
-    return type.join(" • ");
+  if (!type || (Array.isArray(type) && type.length === 0)) {
+    return "Produtor local";
   }
-  return type;
+
+  return Array.isArray(type)
+    ? type
+        .map((t) => (typeof t === "string" ? t : (t as { name?: string }).name))
+        .join(" • ")
+    : type;
 }
 
 export default async function ProducersDetailsPage({ params }: Props) {
   const { id } = await params;
-  const producer = getProducerById(id);
+  const producer = await apiClient.get<ProducerType>(`/producers/${id}/`);
 
   // Handle case where producer is not found
   if (!producer) {
@@ -78,7 +89,7 @@ export default async function ProducersDetailsPage({ params }: Props) {
             {producer.name}
           </h1>
           <p className="text-xl text-primary">
-            {formatProducerType(producer.type)}
+            {formatProducerType(producer.categories)}
           </p>
           <p className="text-gray-600 flex items-center gap-1 mt-2">
             <BiMapPin className="w-4 h-4" />
@@ -98,7 +109,7 @@ export default async function ProducersDetailsPage({ params }: Props) {
                   `${
                     producer.name
                   } é um produtor local dedicado à produção de ${formatProducerType(
-                    producer.type
+                    producer.categories
                   ).toLowerCase()} na região de ${
                     producer.address.city
                   }. Com tradição e qualidade, oferece produtos artesanais frescos e autênticos.`}
@@ -111,8 +122,11 @@ export default async function ProducersDetailsPage({ params }: Props) {
             )}
 
             {/* Gallery (placeholder for future images) */}
-            {producer.images && producer.images.length > 0 && (
-              <Gallery images={producer.images} producerName={producer.name} />
+            {producer.gallery_images && producer.gallery_images.length > 0 && (
+              <Gallery
+                images={producer.gallery_images.map((img) => img.image_url)}
+                producerName={producer.name}
+              />
             )}
           </div>
 
