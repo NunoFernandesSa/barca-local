@@ -12,7 +12,7 @@ export type AddressType = {
 export type ProducerType = {
   id: string;
   name: string;
-  type: string[];
+  categories: string[];
   type_display: string;
   description: string;
   phone: string;

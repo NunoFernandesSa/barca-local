@@ -7,6 +7,7 @@ export default function SearchSection({
   searchTerm,
   activeCategory,
   onCategoryChange,
+  producers,
 }: SearchSectionProps) {
   return (
     <section className="container flex flex-col items-start justify-center mx-auto px-6 my-6 gap-3">
@@ -14,6 +15,7 @@ export default function SearchSection({
       <SearchFilters
         activeCategory={activeCategory}
         onCategoryChange={onCategoryChange}
+        producers={producers}
       />
     </section>
   );

@@ -1,6 +1,5 @@
 import { Metadata } from "next";
 import Container from "@/components/shared/Container";
-import { PRODUCERS } from "@/constants/producers";
 import { BiMapPin } from "react-icons/bi";
 import ProductsInfo from "@/components/features/producers/ProductsInfo";
 import ContactInfo from "@/components/features/producers/ContactInfo";

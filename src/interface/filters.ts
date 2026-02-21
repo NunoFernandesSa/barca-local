@@ -1,3 +1,5 @@
+import { ProducerType } from "@/types/producers-props";
+
 export interface SearchInputProps {
   onSearch: (term: string) => void;
   searchTerm: string;
@@ -13,4 +15,5 @@ export interface SearchSectionProps {
   searchTerm: string;
   activeCategory: string;
   onCategoryChange: (category: string) => void;
+  producers: ProducerType[];
 }

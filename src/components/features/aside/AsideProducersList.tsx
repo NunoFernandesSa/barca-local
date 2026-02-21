@@ -79,9 +79,9 @@ export default function AsideProducersList({
             {producer.address?.zip_code} {producer.address?.city}
           </div>
           <span className="text-xs text-foreground font-light bg-primary/20 px-2 py-0.5 rounded-full">
-            {Array.isArray(producer.type)
-              ? producer.type.join(", ")
-              : producer.type}
+            {Array.isArray(producer.categories)
+              ? producer.categories.join(", ")
+              : producer.categories}
           </span>
         </div>
       ))}

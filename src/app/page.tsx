@@ -5,7 +5,7 @@ import SearchSection from "@/components/features/search-filters/SearchSection";
 import AsideProducersList from "@/components/features/aside/AsideProducersList";
 import { useFilters } from "@/hooks/useFilters";
 import { ProducerType } from "@/types/producers-props";
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 export default function Home() {
   const [selectedProducer, setSelectedProducer] = useState<ProducerType | null>(
@@ -27,6 +27,7 @@ export default function Home() {
         searchTerm={searchTerm}
         activeCategory={activeCategory}
         onCategoryChange={handleCategoryChange}
+        producers={producers}
       />
 
       <main className="container mx-auto px-3 md:px-6 h-[70vh] flex">

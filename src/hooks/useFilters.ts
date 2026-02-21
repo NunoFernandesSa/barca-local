@@ -1,11 +1,15 @@
-import { PRODUCERS } from "@/constants/producers";
 import { useState, useMemo } from "react";
+import { ProducerType } from "@/types/producers-props";
 
-export function useFilters(initialProducers = PRODUCERS) {
+interface UseFiltersProps {
+  initialProducers?: ProducerType[];
+}
+
+export function useFilters({ initialProducers = [] }: UseFiltersProps = {}) {
   const [searchTerm, setSearchTerm] = useState("");
-  const [activeCategory, setActiveCategory] = useState("todos");
+  const [activeCategory, setActiveCategory] = useState<string>("todos");
 
-  // Função para normalizar texto (remover acentos e lower case)
+  // Normalize the text to remove accents and convert to lowercase
   const normalizeText = (text: string) => {
     return text
       .toLowerCase()
@@ -13,53 +17,91 @@ export function useFilters(initialProducers = PRODUCERS) {
       .replace(/[\u0300-\u036f]/g, "");
   };
 
-  // Filtra os produtores baseado no searchTerm e activeCategory
+  // Extract all unique categories from producers
+  const allCategories = useMemo(() => {
+    const categories = new Set<string>();
+
+    initialProducers.forEach((producer) => {
+      if (producer.categories && Array.isArray(producer.categories)) {
+        producer.categories.forEach((cat) => {
+          if (
+            typeof cat === "object" &&
+            cat !== null &&
+            "name" in cat &&
+            typeof (cat as { name: string }).name === "string"
+          ) {
+            categories.add((cat as { name: string }).name);
+          } else if (typeof cat === "string") {
+            categories.add(cat);
+          }
+        });
+      }
+    });
+
+    return Array.from(categories).sort();
+  }, [initialProducers]);
+
+  // Filter producers based on searchTerm and activeCategory
   const filteredProducers = useMemo(() => {
     return initialProducers.filter((producer) => {
-      // Filtro por categoria
-      const matchesCategory =
-        activeCategory === "todos" ||
-        (Array.isArray(producer.type)
-          ? producer.type.some(
-              (t) => normalizeText(t) === normalizeText(activeCategory)
-            )
-          : normalizeText(producer.type) === normalizeText(activeCategory));
+      // Category filter
+      let matchesCategory = activeCategory === "todos";
 
-      // Se não passar na categoria, nem continua
+      if (!matchesCategory) {
+        if (producer.categories && Array.isArray(producer.categories)) {
+          matchesCategory = producer.categories.some((cat) => {
+            const catName =
+              typeof cat === "object" ? (cat as { name: string }).name : cat;
+            return (
+              catName &&
+              normalizeText(catName) === normalizeText(activeCategory)
+            );
+          });
+        }
+      }
+
+      // If category doesn't match, stop here
       if (!matchesCategory) return false;
 
-      // Se não tem searchTerm, mostra todos da categoria
+      // If no search term, show all from category
       if (!searchTerm) return true;
 
-      // Filtro por texto (nome do produtor ou tipo)
+      // Text filter (producer name or categories)
       const normalizedSearch = normalizeText(searchTerm);
       const normalizedName = normalizeText(producer.name);
-      const normalizedType = normalizeText(
-        Array.isArray(producer.type) ? producer.type.join(" ") : producer.type
-      );
+
+      // Normalize all producer categories for search
+      const producerCategories = producer.categories
+        ? producer.categories
+            .map((cat) =>
+              normalizeText(
+                typeof cat === "object" ? (cat as { name: string }).name : cat
+              )
+            )
+            .join(" ")
+        : "";
 
       return (
         normalizedName.includes(normalizedSearch) ||
-        normalizedType.includes(normalizedSearch)
+        producerCategories.includes(normalizedSearch)
       );
     });
   }, [searchTerm, activeCategory, initialProducers]);
 
-  // Funções para atualizar os filtros
+  // Functions to update filters
   const handleSearch = (term: string) => {
     setSearchTerm(term);
   };
 
   const handleCategoryChange = (category: string) => {
     setActiveCategory(category);
-    // Opcional: limpar search quando muda de categoria?
-    // setSearchTerm('')
   };
 
   return {
     searchTerm,
     activeCategory,
     filteredProducers,
+    allCategories,
     handleSearch,
     handleCategoryChange,
   };
