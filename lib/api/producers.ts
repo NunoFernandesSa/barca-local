@@ -22,6 +22,11 @@ export const producersApi = {
     );
   },
 
+  // get all producers
+  getAll: async (): Promise<ProducerType[]> => {
+    return apiClient.get<ProducerType[]>(`/producers/`);
+  },
+
   // get producer by id
   get: async (id: string): Promise<ProducerType> => {
     return apiClient.get<ProducerType>(`/producers/${id}`);
