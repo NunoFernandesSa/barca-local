@@ -36,9 +36,7 @@ export default function AsideProducersList({
       .catch((error) => {
         if (!isMounted) return;
         console.error("❌ Erro ao carregar produtores:", error);
-        setError(
-          "❌ Não foi possível carregar os produtores. Tente novamente mais tarde."
-        );
+        setError("❌ Não foi possível carregar a lista de produtores.");
         setLoading(false);
       });
 

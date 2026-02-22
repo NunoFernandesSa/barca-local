@@ -2,14 +2,12 @@ import { ProducerFilters } from "@/types/producers-props";
 import { producersApi } from "../../lib/api/producers";
 
 export const producerService = {
-  async getProducers(filters?: ProducerFilters) {
-    const response = await producersApi.list(filters);
-    return response;
+  async getAllProducers() {
+    return producersApi.getAll();
   },
 
   async getProducerById(id: string) {
     const producer = await producersApi.get(id);
-
     return {
       ...producer,
       gallery_images: producer.gallery_images.sort((a, b) => a.order - b.order),
@@ -22,5 +20,10 @@ export const producerService = {
 
   async getProducersByCity(city: string) {
     return producersApi.getByCity(city);
+  },
+
+  async getProducers(filters?: ProducerFilters) {
+    const response = await producersApi.list(filters);
+    return response;
   },
 };

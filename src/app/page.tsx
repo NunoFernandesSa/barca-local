@@ -5,7 +5,7 @@ import SearchSection from "@/components/features/search-filters/SearchSection";
 import AsideProducersList from "@/components/features/aside/AsideProducersList";
 import { useFilters } from "@/hooks/useFilters";
 import { ProducerType } from "@/types/producers-props";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useState } from "react";
 
 export default function Home() {
   const [selectedProducer, setSelectedProducer] = useState<ProducerType | null>(
@@ -15,7 +15,7 @@ export default function Home() {
   const { searchTerm, activeCategory, handleSearch, handleCategoryChange } =
     useFilters();
 
-  // function for handling producers loaded
+  // function for handling producers loaded from API
   const handleProducersLoaded = useCallback((data: ProducerType[]) => {
     setProducers(data);
   }, []);
