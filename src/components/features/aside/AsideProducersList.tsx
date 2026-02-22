@@ -4,6 +4,10 @@ import { ProducerType } from "@/types/producers-props";
 import { useState, useEffect, useRef } from "react";
 import { ApiResponse, AsideProducersListProps } from "@/types/aside-props";
 import { apiClient } from "../../../../lib/api/client";
+import { ProducersLoader } from "@/components/shared/ProducersLoader";
+import { SpinnerLoader } from "@/components/shared/SpinnerLoader";
+import { ErrorLoader } from "@/components/shared/ErrorLoader";
+import { EmptyStateLoader } from "@/components/shared/loaders/EmptyStateLoader";
 
 export default function AsideProducersList({
   selectedProducer,
@@ -49,7 +53,7 @@ export default function AsideProducersList({
   if (loading) {
     return (
       <aside className="hidden md:block w-1/4 h-full rounded-l-2xl shadow-lg overflow-y-auto p-4">
-        <p className="text-gray-500">Carregando produtores...</p>
+        <SpinnerLoader />
       </aside>
     );
   }
@@ -58,7 +62,7 @@ export default function AsideProducersList({
   if (error) {
     return (
       <aside className="hidden md:block w-1/4 h-full rounded-l-2xl shadow-lg overflow-y-auto p-4">
-        <p className="text-red-500">{error}</p>
+        <ErrorLoader onRetry={() => window.location.reload()} />
       </aside>
     );
   }
@@ -67,7 +71,7 @@ export default function AsideProducersList({
   if (!producers || producers.length === 0) {
     return (
       <aside className="hidden md:block w-1/4 h-full rounded-l-2xl shadow-lg overflow-y-auto p-4">
-        <p className="text-gray-500">Nenhum produtor encontrado</p>
+        <EmptyStateLoader />
       </aside>
     );
   }
