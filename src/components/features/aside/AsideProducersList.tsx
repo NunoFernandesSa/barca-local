@@ -1,15 +1,15 @@
 "use client";
 
-
+// ----- React/Next
+import { useEffect } from "react";
 // ----- components -----
 import { SpinnerLoader } from "@/components/shared/loaders/SpinnerLoader";
 import { ErrorLoader } from "@/components/shared/loaders/ErrorLoader";
 import { EmptyStateLoader } from "@/components/shared/loaders/EmptyStateLoader";
-
-
-import { useProducer } from "@/hooks/useProducer";
+// ----- types -----
 import { AsideProducersListProps } from "@/types/aside-props";
-import { useEffect } from "react";
+// ----- hooks -----
+import { useProducer } from "@/hooks/useProducer";
 
 export default function AsideProducersList({
   selectedProducer,
