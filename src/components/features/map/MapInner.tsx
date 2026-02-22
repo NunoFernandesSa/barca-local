@@ -83,7 +83,9 @@ export function MapInner({ selectedProducer, producers = [] }: MapInnerProps) {
                     {p.address?.zip_code} {p.address?.city}
                   </div>
                   <div className="text-xs bg-gray-500 w-auto py-0.5 px-2 rounded-md text-white inline-block mt-1">
-                    {Array.isArray(p.type) ? p.type.join(", ") : p.type}
+                    {Array.isArray(p.categories)
+                      ? p.categories.join(", ")
+                      : p.categories}
                   </div>
                   <div className="w-full flex justify-end mt-2">
                     <Link
