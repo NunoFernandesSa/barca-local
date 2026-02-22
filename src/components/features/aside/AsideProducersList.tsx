@@ -4,9 +4,9 @@ import { ProducerType } from "@/types/producers-props";
 import { useState, useEffect, useRef } from "react";
 import { ApiResponse, AsideProducersListProps } from "@/types/aside-props";
 import { apiClient } from "../../../../lib/api/client";
-import { ProducersLoader } from "@/components/shared/ProducersLoader";
-import { SpinnerLoader } from "@/components/shared/SpinnerLoader";
-import { ErrorLoader } from "@/components/shared/ErrorLoader";
+import { ProducersLoader } from "@/components/shared/loaders/ProducersLoader";
+import { SpinnerLoader } from "@/components/shared/loaders/SpinnerLoader";
+import { ErrorLoader } from "@/components/shared/loaders/ErrorLoader";
 import { EmptyStateLoader } from "@/components/shared/loaders/EmptyStateLoader";
 
 export default function AsideProducersList({
