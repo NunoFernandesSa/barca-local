@@ -2,6 +2,7 @@
 
 import dynamic from "next/dynamic";
 import { MapWrapperProps } from "@/types/map-props";
+import { SpinnerLoader } from "@/components/shared/loaders/SpinnerLoader";
 
 const MapInner = dynamic(
   () => import("./MapInner").then((mod) => mod.MapInner),
@@ -9,7 +10,7 @@ const MapInner = dynamic(
     ssr: false,
     loading: () => (
       <div className="h-full w-full bg-gray-100 rounded-r-2xl flex items-center justify-center">
-        <p className="text-gray-500">Carregando mapa...</p>
+        <SpinnerLoader message="Carregando mapa..." />
       </div>
     ),
   }
