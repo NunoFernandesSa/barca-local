@@ -1,56 +1,38 @@
 "use client";
 
-import { ProducerType } from "@/types/producers-props";
-import { useState, useEffect, useRef } from "react";
-import { ApiResponse, AsideProducersListProps } from "@/types/aside-props";
-import { apiClient } from "../../../../lib/api/client";
-import { ProducersLoader } from "@/components/shared/loaders/ProducersLoader";
+
+// ----- components -----
 import { SpinnerLoader } from "@/components/shared/loaders/SpinnerLoader";
 import { ErrorLoader } from "@/components/shared/loaders/ErrorLoader";
 import { EmptyStateLoader } from "@/components/shared/loaders/EmptyStateLoader";
+
+
+import { useProducer } from "@/hooks/useProducer";
+import { AsideProducersListProps } from "@/types/aside-props";
+import { useEffect } from "react";
 
 export default function AsideProducersList({
   selectedProducer,
   setSelectedProducer,
   onProducersLoaded,
 }: AsideProducersListProps) {
-  const [producers, setProducers] = useState<ProducerType[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  const { producers, loading, error, fetchProducers, clearError, initialized } =
+    useProducer();
 
-  const hasLoaded = useRef(false);
-
+  // loading producers from API in mount component
   useEffect(() => {
-    if (hasLoaded.current) return;
+    fetchProducers();
+  }, [fetchProducers]);
 
-    let isMounted = true;
-    hasLoaded.current = true;
-    apiClient
-      .get<ApiResponse>("/producers/")
-      .then((data) => {
-        if (!isMounted) return;
-        setProducers(data.results);
-
-        if (onProducersLoaded) {
-          onProducersLoaded(data.results);
-        }
-
-        setLoading(false);
-      })
-      .catch((error) => {
-        if (!isMounted) return;
-        console.error("❌ Erro ao carregar produtores:", error);
-        setError("❌ Não foi possível carregar a lista de produtores.");
-        setLoading(false);
-      });
-
-    return () => {
-      isMounted = false;
-    };
-  }, [onProducersLoaded]);
+  // Notify parent component that producers are loaded
+  useEffect(() => {
+    if (producers.length > 0 && onProducersLoaded) {
+      onProducersLoaded(producers);
+    }
+  }, [producers, onProducersLoaded]);
 
   // ----- if loading show a loading message -----
-  if (loading) {
+  if (!initialized && loading) {
     return (
       <aside className="hidden md:block w-1/4 h-full rounded-l-2xl shadow-lg overflow-y-auto p-4">
         <SpinnerLoader />
@@ -62,13 +44,19 @@ export default function AsideProducersList({
   if (error) {
     return (
       <aside className="hidden md:block w-1/4 h-full rounded-l-2xl shadow-lg overflow-y-auto p-4">
-        <ErrorLoader onRetry={() => window.location.reload()} />
+        <ErrorLoader
+          onRetry={() => {
+            window.location.reload();
+            clearError();
+            fetchProducers();
+          }}
+        />
       </aside>
     );
   }
 
   // ----- if producers is undefined or empty show a message -----
-  if (!producers || producers.length === 0) {
+  if (!loading && initialized && producers.length === 0) {
     return (
       <aside className="hidden md:block w-1/4 h-full rounded-l-2xl shadow-lg overflow-y-auto p-4">
         <EmptyStateLoader />

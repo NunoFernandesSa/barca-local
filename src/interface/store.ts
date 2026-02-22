@@ -4,7 +4,10 @@ export interface ProducerStore {
   producers: ProducerType[];
   loading: boolean;
   error: string | null;
+  initialized: boolean;
+
+  fetchProducers: () => Promise<void>;
   setProducers: (producers: ProducerType[]) => void;
-  setLoading: (loading: boolean) => void;
-  setError: (error: string | null) => void;
+  clearError: () => void;
+  reset: () => void;
 }

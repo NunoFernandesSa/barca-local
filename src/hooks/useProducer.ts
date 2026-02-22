@@ -1,43 +1,19 @@
 import useProducerStore from "@/store/producers-store";
 
 export const useProducer = () => {
-  const { producers, loading, error, setProducers, setLoading, setError } =
-    useProducerStore();
-
-  const getProducerById = (id: string) => {
-    if (!producers) return null;
-    return producers.find((p) => p.id === id);
-  };
-
-  const getProducersByCity = (city: string) => {
-    if (!producers) return [];
-    return producers.filter((p) => p.address.city === city);
-  };
-
-  const getProducersByCategory = (category: string) => {
-    if (!producers) return [];
-    return producers.filter((p) =>
-      p.categories?.some(
-        (cat) =>
-          typeof cat === "object" &&
-          cat !== null &&
-          "name" in cat &&
-          typeof (cat as { name: string }).name === "string" &&
-          (cat as { name: string }).name.toLowerCase() ===
-            category.toLowerCase()
-      )
-    );
-  };
+  const producers = useProducerStore((state) => state.producers);
+  const loading = useProducerStore((state) => state.loading);
+  const error = useProducerStore((state) => state.error);
+  const fetchProducers = useProducerStore((state) => state.fetchProducers);
+  const clearError = useProducerStore((state) => state.clearError);
+  const initialized = useProducerStore((state) => state.initialized);
 
   return {
     producers,
     loading,
     error,
-    setProducers,
-    setLoading,
-    setError,
-    getProducerById,
-    getProducersByCity,
-    getProducersByCategory,
+    fetchProducers,
+    clearError,
+    initialized,
   };
 };
