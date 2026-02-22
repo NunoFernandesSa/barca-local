@@ -14,6 +14,21 @@ export const useProducer = () => {
     return producers.filter((p) => p.address.city === city);
   };
 
+  const getProducersByCategory = (category: string) => {
+    if (!producers) return [];
+    return producers.filter((p) =>
+      p.categories?.some(
+        (cat) =>
+          typeof cat === "object" &&
+          cat !== null &&
+          "name" in cat &&
+          typeof (cat as { name: string }).name === "string" &&
+          (cat as { name: string }).name.toLowerCase() ===
+            category.toLowerCase()
+      )
+    );
+  };
+
   return {
     producers,
     loading,
@@ -23,5 +38,6 @@ export const useProducer = () => {
     setError,
     getProducerById,
     getProducersByCity,
+    getProducersByCategory,
   };
 };
