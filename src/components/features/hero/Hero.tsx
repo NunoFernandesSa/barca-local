@@ -7,23 +7,17 @@ export default function Hero() {
   const router = useRouter();
 
   return (
-    <section className="min-h-screen flex flex-col items-center justify-center">
+    <section className="min-h-screen flex flex-col justify-center">
       {/* Logo/Brand */}
-      <section className="text-center">
-        <div className="text-center mb-12">
+      <section className="w-1/2 min-h-60">
+        <div className="mb-12">
           <h1 className="text-5xl md:text-7xl font-bold text-primary mb-4">
             Produtores locais
           </h1>
           <p className="text-xl text-gray-600">
             Produtores locais de Ponte da Barca e arredores
           </p>
-        </div>
-        {/* Hero */}
-        <div className="text-center mb-16">
-          <p className="text-2xl md:text-3xl text-gray-700 mb-4">
-            Descubra os produtores locais de Ponte da Barca
-          </p>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+          <p className="text-lg text-gray-600">
             Encontre vinho, mel, frutas e muito mais diretamente dos produtores.
           </p>
         </div>
