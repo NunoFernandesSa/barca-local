@@ -270,13 +270,13 @@ export default function ContactPage() {
           <section className="mt-12 grid md:grid-cols-2 gap-6">
             <div className="bg-white rounded-xl p-6 text-center shadow-md">
               <MdEmail className="text-4xl text-primary mx-auto mb-3" />
-              <h3 className="font-semibold text-gray-800 mb-2">Email</h3>
+              <h3 className="font-semibold text-gray-800 mb-2">E-mail</h3>
               <p className="text-gray-600">contact@localnabarca.pt</p>
             </div>
 
             <div className="bg-white rounded-xl p-6 text-center shadow-md">
               <MdPhone className="text-4xl text-primary mx-auto mb-3" />
-              <h3 className="font-semibold text-gray-800 mb-2">Téléphone</h3>
+              <h3 className="font-semibold text-gray-800 mb-2">Telefone</h3>
               <p className="text-gray-600">(+351) .........</p>
               <p className="text-sm text-gray-500">Seg-Sex, 9h-17h</p>
             </div>
