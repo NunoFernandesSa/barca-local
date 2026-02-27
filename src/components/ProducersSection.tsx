@@ -28,7 +28,7 @@ export default function ProducersSection() {
         <div className="grid md:grid-cols-2 gap-12">
           <div>
             <h3 className="text-2xl font-semibold text-gray-800 mb-4">
-              Como aparecer nos Produtores Locais?
+              Como aparecer nos produtores locais?
             </h3>
 
             <div className="space-y-6">

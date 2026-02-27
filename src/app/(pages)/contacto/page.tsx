@@ -1,4 +1,3 @@
-// app/contact/page.tsx
 "use client";
 
 import { useState } from "react";
@@ -24,7 +23,7 @@ export default function ContactPage() {
     producerName: "",
     producerLocation: "",
     message: "",
-    type: "producteur", // "producteur" ou "visiteur"
+    type: "producteur",
   });
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -61,12 +60,10 @@ export default function ContactPage() {
       {/* Hero Section */}
       <section className="bg-primary text-white py-16">
         <div className="container mx-auto px-4 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">
-            Contactez-nous
-          </h1>
+          <h1 className="text-4xl md:text-5xl font-bold mb-4">Contacte-nos</h1>
           <p className="text-xl max-w-2xl mx-auto">
-            Vous êtes producteur local ou simplement intéressé par la plateforme
-            ? N&apos;hésitez pas à nous contacter !
+            É produtor local ou simplesmente está interessado na plataforma? Não
+            hesite em contactar-nos!
           </p>
         </div>
       </section>
@@ -76,7 +73,7 @@ export default function ContactPage() {
           {/* Formulaire de contact */}
           <section className="bg-white rounded-2xl shadow-xl p-8 md:p-12">
             <h2 className="text-2xl font-bold text-primary mb-6">
-              Formulaire de contact
+              Formulário de contato
             </h2>
 
             {/* Message de succès */}
@@ -84,8 +81,8 @@ export default function ContactPage() {
               <div className="mb-6 p-4 bg-green-50 border border-green-200 rounded-lg flex items-center gap-3">
                 <MdCheckCircle className="text-green-500 text-xl" />
                 <p className="text-green-700">
-                  Message envoyé avec succès ! Nous vous répondrons dans les
-                  plus brefs délais.
+                  Mensagem enviada com sucesso! Responderemos assim que
+                  possível.
                 </p>
               </div>
             )}
@@ -95,8 +92,8 @@ export default function ContactPage() {
               <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg flex items-center gap-3">
                 <MdError className="text-red-500 text-xl" />
                 <p className="text-red-700">
-                  Une erreur est survenue. Veuillez réessayer ou nous contacter
-                  directement par email.
+                  Ocorreu um erro. Tente novamente ou contacte-nos diretamente
+                  por e-mail.
                 </p>
               </div>
             )}
@@ -105,7 +102,7 @@ export default function ContactPage() {
               {/* Type de contact */}
               <div>
                 <label className="block text-gray-700 font-medium mb-2">
-                  Vous êtes *
+                  É *
                 </label>
                 <div className="flex gap-4">
                   <label className="flex items-center gap-2">
@@ -119,7 +116,7 @@ export default function ContactPage() {
                       }
                       className="text-primary"
                     />
-                    <span>Producteur</span>
+                    <span>Produtor</span>
                   </label>
                   <label className="flex items-center gap-2">
                     <input
@@ -132,7 +129,7 @@ export default function ContactPage() {
                       }
                       className="text-primary"
                     />
-                    <span>Visiteur</span>
+                    <span>Visitante</span>
                   </label>
                 </div>
               </div>
@@ -141,7 +138,7 @@ export default function ContactPage() {
                 {/* Nom */}
                 <div>
                   <label className="block text-gray-700 font-medium mb-2">
-                    Nom complet *
+                    Nome completo *
                   </label>
                   <input
                     type="text"
@@ -151,14 +148,14 @@ export default function ContactPage() {
                       setFormData({ ...formData, name: e.target.value })
                     }
                     className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
-                    placeholder="Votre nom"
+                    placeholder="O seu nome"
                   />
                 </div>
 
                 {/* Email */}
                 <div>
                   <label className="block text-gray-700 font-medium mb-2">
-                    Email *
+                    E-mail *
                   </label>
                   <input
                     type="email"
@@ -168,23 +165,24 @@ export default function ContactPage() {
                       setFormData({ ...formData, email: e.target.value })
                     }
                     className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
-                    placeholder="votre@email.com"
+                    placeholder="seu@email.com"
                   />
                 </div>
 
                 {/* Téléphone */}
                 <div>
                   <label className="block text-gray-700 font-medium mb-2">
-                    Téléphone
+                    Telefone *
                   </label>
                   <input
                     type="tel"
+                    required
                     value={formData.phone}
                     onChange={(e) =>
                       setFormData({ ...formData, phone: e.target.value })
                     }
                     className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
-                    placeholder="+351 123 456 789"
+                    placeholder="(+351) 123 456 789"
                   />
                 </div>
 
@@ -193,7 +191,7 @@ export default function ContactPage() {
                   <>
                     <div>
                       <label className="block text-gray-700 font-medium mb-2">
-                        Nom de l&apos;exploitation *
+                        Nome da exploração *
                       </label>
                       <input
                         type="text"
@@ -206,14 +204,14 @@ export default function ContactPage() {
                           })
                         }
                         className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
-                        placeholder="Nom de votre ferme / exploitation"
+                        placeholder="Nome da sua quinta / exploração"
                       />
                     </div>
 
                     {/* Localisation */}
                     <div>
                       <label className="block text-gray-700 font-medium mb-2">
-                        Localisation *
+                        Localização *
                       </label>
                       <input
                         type="text"
@@ -226,7 +224,7 @@ export default function ContactPage() {
                           })
                         }
                         className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
-                        placeholder="Ville / Région"
+                        placeholder="Localidade / Região"
                       />
                     </div>
                   </>
@@ -236,7 +234,7 @@ export default function ContactPage() {
               {/* Message */}
               <div>
                 <label className="block text-gray-700 font-medium mb-2">
-                  Message *
+                  Mensagem *
                 </label>
                 <textarea
                   required
@@ -248,8 +246,8 @@ export default function ContactPage() {
                   className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
                   placeholder={
                     formData.type === "producteur"
-                      ? "Décrivez votre production, vos produits, et toute information que vous souhaitez partager..."
-                      : "Votre message..."
+                      ? "Descreva sua produção, seus produtos, e qualquer informação que você deseja compartilhar..."
+                      : "Sua mensagem..."
                   }
                 />
               </div>
@@ -262,14 +260,14 @@ export default function ContactPage() {
               >
                 <MdSend />
                 {formStatus === "success"
-                  ? "Message envoyé !"
-                  : "Envoyer le message"}
+                  ? "Mensagem enviada com sucesso!"
+                  : "Enviar a mensagem"}
               </button>
             </form>
           </section>
 
           {/* Autres moyens de contact */}
-          <section className="mt-12 grid md:grid-cols-3 gap-6">
+          <section className="mt-12 grid md:grid-cols-2 gap-6">
             <div className="bg-white rounded-xl p-6 text-center shadow-md">
               <MdEmail className="text-4xl text-primary mx-auto mb-3" />
               <h3 className="font-semibold text-gray-800 mb-2">Email</h3>
@@ -279,15 +277,8 @@ export default function ContactPage() {
             <div className="bg-white rounded-xl p-6 text-center shadow-md">
               <MdPhone className="text-4xl text-primary mx-auto mb-3" />
               <h3 className="font-semibold text-gray-800 mb-2">Téléphone</h3>
-              <p className="text-gray-600">+351 123 456 789</p>
-              <p className="text-sm text-gray-500">Lun-Ven, 9h-18h</p>
-            </div>
-
-            <div className="bg-white rounded-xl p-6 text-center shadow-md">
-              <MdLocationOn className="text-4xl text-primary mx-auto mb-3" />
-              <h3 className="font-semibold text-gray-800 mb-2">Adresse</h3>
-              <p className="text-gray-600">Ponte da Barca</p>
-              <p className="text-gray-600">Portugal</p>
+              <p className="text-gray-600">(+351) .........</p>
+              <p className="text-sm text-gray-500">Seg-Sex, 9h-17h</p>
             </div>
           </section>
         </div>

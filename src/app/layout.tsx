@@ -15,26 +15,26 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://www.produtoreslocais.pt"),
-  title: "Produtores Locais do Minho | Anuário de Produtores Artesanais",
+  metadataBase: new URL("https://www.localnabarca.pt"),
+  title: "Local na Barca | Anuário de Produtores Artesanais",
   description:
     "Descubra os melhores produtores locais de Ponte da Barca e arredores. Anuário completo com produtos artesanais, queijos, vinhos e artesanato da região do Minho.",
 
   // openGraph for social midia
   openGraph: {
-    title: "Produtores Locais do Minho",
+    title: "Local na Barca",
     description:
       "Conecte-se com os melhores produtores artesanais da região do Minho. Descubra produtos locais autênticos e apoie a economia local.",
-    url: "https://www.produtoreslocais.pt",
-    siteName: "Produtores Locais do Minho",
+    url: "https://www.localnabarca.pt",
+    siteName: "Local na Barca",
     locale: "pt_PT",
     type: "website",
     images: [
       {
-        url: "https://www.teusite.pt/og-image.jpg", // Adiciona uma imagem representativa
+        url: "https://www.localnabarca.pt/og-image.jpg", // Adiciona uma imagem representativa
         width: 1200,
         height: 630,
-        alt: "Mapa dos produtores locais do Minho",
+        alt: "Mapa dos produtores locais de Ponte da Barca e arredores",
       },
     ],
   },
@@ -67,9 +67,9 @@ export const metadata: Metadata = {
   },
 
   alternates: {
-    canonical: "https://www.produtoreslocais.pt",
+    canonical: "https://www.localnabarca.pt",
     languages: {
-      "pt-PT": "https://www.produtoreslocais.pt",
+      "pt-PT": "https://www.localnabarca.pt",
     },
   },
 };

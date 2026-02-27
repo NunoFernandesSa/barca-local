@@ -37,7 +37,7 @@ export default function Navbar(): JSX.Element {
             /> */}
             <div className="flex flex-col items-start justify-center space-y-1">
               <h1 className="text-xl font-bold text-foreground text-primary">
-                Produtores locais
+                Local na Barca
               </h1>
               <p className="text-sm italic text-muted">
                 Descubra produtos locais de qualidade da região do Minho.
