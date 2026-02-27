@@ -10,6 +10,7 @@ export default function Button({
   iconPosition = "left",
   isLoading = false,
   disabled = false,
+  title = "",
 }: ButtonProps) {
   const baseStyles = "rounded-lg font-semibold transition-colors shadow-lg";
 
@@ -33,6 +34,7 @@ export default function Button({
       className={`
         ${baseStyles} ${variants[variant]} ${sizes[size]} ${className}
       `}
+      title={title}
     >
       {isLoading ? (
         <svg className="animate-spin h-5 w-5" viewBox="0 0 24 24">

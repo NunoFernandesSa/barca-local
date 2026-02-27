@@ -8,4 +8,5 @@ export type ButtonProps = {
   iconPosition?: "left" | "right";
   isLoading?: boolean;
   disabled?: boolean;
+  title?: string;
 };
