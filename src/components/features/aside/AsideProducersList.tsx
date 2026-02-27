@@ -10,6 +10,7 @@ import { EmptyStateLoader } from "@/components/shared/loaders/EmptyStateLoader";
 import { AsideProducersListProps } from "@/types/aside-props";
 // ----- hooks -----
 import { useProducer } from "@/hooks/useProducer";
+import { IoLocationOutline } from "react-icons/io5";
 
 export default function AsideProducersList({
   selectedProducer,
@@ -78,11 +79,16 @@ export default function AsideProducersList({
             {producer.name}
           </div>
 
-          <div className="text-xs text-gray-600 mt-1">
-            {producer.address?.number} {producer.address?.street}
-          </div>
-          <div className="text-xs text-gray-600 mt-1">
-            {producer.address?.zip_code} {producer.address?.city}
+          <div className="flex items-center gap-2">
+            <IoLocationOutline className="text-xl" />
+            <div className="">
+              <div className="text-xs text-gray-600 mt-1">
+                {producer.address?.number} {producer.address?.street}
+              </div>
+              <div className="text-xs text-gray-600 mt-1">
+                {producer.address?.zip_code} {producer.address?.city}
+              </div>
+            </div>
           </div>
 
           {producer.categories && producer.categories.length > 0 ? (
