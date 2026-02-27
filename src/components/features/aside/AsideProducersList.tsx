@@ -79,15 +79,12 @@ export default function AsideProducersList({
             {producer.name}
           </div>
 
-          <div className="flex items-center gap-2">
-            <IoLocationOutline className="text-xl" />
-            <div className="">
-              <div className="text-sm text-gray-600 mt-1">
-                {producer.address?.number} {producer.address?.street}
-              </div>
-              <div className="text-sm text-gray-600 mt-1">
-                {producer.address?.zip_code} {producer.address?.city}
-              </div>
+          <div className="">
+            <div className="text-sm text-gray-600 mt-1">
+              {producer.address?.number} {producer.address?.street}
+            </div>
+            <div className="text-sm text-gray-600 mt-1">
+              {producer.address?.zip_code} {producer.address?.city}
             </div>
           </div>
 
