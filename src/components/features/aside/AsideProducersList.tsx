@@ -82,17 +82,17 @@ export default function AsideProducersList({
           <div className="flex items-center gap-2">
             <IoLocationOutline className="text-xl" />
             <div className="">
-              <div className="text-xs text-gray-600 mt-1">
+              <div className="text-sm text-gray-600 mt-1">
                 {producer.address?.number} {producer.address?.street}
               </div>
-              <div className="text-xs text-gray-600 mt-1">
+              <div className="text-sm text-gray-600 mt-1">
                 {producer.address?.zip_code} {producer.address?.city}
               </div>
             </div>
           </div>
 
           {producer.categories && producer.categories.length > 0 ? (
-            <div className="flex flex-wrap gap-1 mt-1">
+            <div className="flex flex-wrap gap-1 mt-2">
               {producer.categories.map((cat) => {
                 const categoryName =
                   typeof cat === "string"
@@ -102,7 +102,7 @@ export default function AsideProducersList({
                 return (
                   <span
                     key={categoryName}
-                    className="text-xs text-foreground font-light bg-primary/20 px-2 py-0.5 rounded-full"
+                    className="text-xs text-white font-light bg-primary px-2 py-0.5 rounded-full"
                   >
                     {categoryName}
                   </span>
